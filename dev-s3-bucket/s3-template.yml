@@ -4,7 +4,7 @@ Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: !Ref bucketName
+      bucketname: !Ref bucketname
       AccessControl: PublicRead
       PublicAccessBlockConfiguration:
         BlockPublicAcls: false
@@ -13,10 +13,10 @@ Resources:
         RestrictPublicBuckets: false
         tags:
           - Key: Name
-            Value: !Ref bucketName
+            Value: !Ref bucketname
           - Key: env
             Value: !Ref env
 Outputs:
-  BucketName:
+  bucketname:
     Value: !Ref S3Bucket
     Description: Name of the S3 bucket
