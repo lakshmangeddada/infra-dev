@@ -2,7 +2,7 @@ pipeline {
     agent any
     // environment{
     //     SSH = credentials("SSH")
-    }
+    //}
     stages {
         stage ('one'){
             steps{
