@@ -1,6 +1,4 @@
-#Create a stage to checkout the code from the git repository
-#Create build stage to create instances in AWS account.
-#Create clerar stage to clean up the workspace.
+// This is a declarative pipeline script that will checkout the code from the repository
 #!/usr/bin/env groovy
 pipeline    {
     agent any
