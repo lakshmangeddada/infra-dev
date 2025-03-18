@@ -1,0 +1,21 @@
+#create a paramter variables for creation of ec2 windows instances.
+#Instance type is t2.micro
+#Instance name is managed nodes
+#Instance keypair is windows_key.pem
+#Instance security group is launch-wizard-2
+#Instance subnet is subnet-0b7baf6955e26c759
+#Instance image is ami-05f08ad7b78afd8cd
+#Instance count is 2
+#Instance tag is Name: managed nodes
+#Instance tag is env: dev
+
+env: dev
+instance_type: t2.micro
+instance_name: managed nodes
+instance_keypair: windows_key.pem
+instance_security_group: launch-wizard-2
+instance_subnet: subnet-0b7baf6955e26c759
+instance_image: ami-05f08ad7b78afd8cd
+instance_count: 2
+instance_tag_name: managed nodes
+

@@ -1,0 +1,58 @@
+#Create a template to define the EC2 instance with all the parameters defined in the parameter file.
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'EC2 instance with winrm and chocolatey installed'
+Parameters:
+  env:
+    Type: String
+    Description: 'Environment'
+    Default: 'dev'
+
+  InstanceType:
+    Type: String
+    Description: 'Instance type'
+    Default: 't2.micro'
+    Allowed Values:
+      - t2.micro
+      - t2.small
+      - t2.medium
+  Name:
+    Type: String
+    Description: 'Instance name'
+
+  SecurityGroup:
+    Type: String
+    Description: 'Security group id for all traffic'
+
+  Image:
+    Type: String
+    Description: 'Image id'
+  
+  Count:
+    Type: Number
+    Description: 'Minimum number of instances'
+
+  Subnet:
+    Type: String
+    Description: 'Subnet id'
+  
+
+Resources:
+   myInstances:
+     Type: 'AWS::EC2::Instance'
+     Properties: 
+        ImageId: !Ref Image
+        InstanceType: !Ref InstanceType
+        KeyName: windows_key
+        SecurityGroupIDs:
+          - !Ref SecurityGroup
+        SubnetId: !Ref Subnet 
+        MinCount: !Ref Count
+        BlockDeviceMappings:
+          - DeviceName: /dev/sda1
+            Ebs:
+              VolumeSize: 30
+              DeleteOnTermination: true
+              VolumeType: gp2
+
+
+

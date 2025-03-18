@@ -1,24 +1,16 @@
-pipeline {
+#Create a stage to checkout the code from the git repository
+#Create build stage to create instances in AWS account.
+#Create clerar stage to clean up the workspace.
+#!/usr/bin/env groovy
+pipeline    {
     agent any
-    // environment{
-    //     SSH = credentials("SSH")
-    //}
     stages {
-        stage ('one'){
-            steps{
-                echo "one"
-                sh 'env > /tmp/env'
+        stage('checkout') {
+            steps {
+                script {
+                    checkout scm
+                }
             }
-        }
-        stage ('two'){
-            steps{
-                echo "two"
-            }
-        }
-    }
-    post {
-        failure {
-            echo 'I will always say Hello again!'
         }
     }
 }
