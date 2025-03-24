@@ -49,12 +49,18 @@ pipeline {
           ) == 0
 
           def deployCommand = """
-            aws cloudformation ${stackExists ? 'update-stack' : 'create-stack'} \
-              --stack-name ${STACK_NAME} \
-              --template-body file://${TEMPLATE_FILE} \
-              --parameters file://${PARAMS_FILE} \
-              --capabilities CAPABILITY_NAMED_IAM \
-              --region ${AWS_REGION}
+            aws cloudformation create-stack \
+            --stack-name ec2-dev \
+            --template-body file://ec2-instances/templates/dev-template.yml \
+            --parameters \
+                ParameterKey=Env,ParameterValue=dev \
+                ParameterKey=EC2Type,ParameterValue=t2.micro \
+                ParameterKey=Name,ParameterValue=managed-node \
+                ParameterKey=SecurityGroup,ParameterValue=launch-wizard-2 \
+                ParameterKey=ImageId,ParameterValue=ami-05f08ad7b78afd8cd \
+                ParameterKey=SubnetID,ParameterValue=subnet-0b7baf6955e26c759 \
+            --capabilities CAPABILITY_NAMED_IAM \
+            --region us-east-1
           """
 
           sh deployCommand
