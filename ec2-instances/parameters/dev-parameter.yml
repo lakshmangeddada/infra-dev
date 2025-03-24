@@ -12,7 +12,7 @@
 Env: dev
 EC2Type: t2.micro
 Name: managed-node
-SecurityGroup: launch-wizard-2
+SecurityGroup: sg-0d50f4771146fb30f
 ImageId: ami-05f08ad7b78afd8cd
 SubnetID: subnet-0b7baf6955e26c759
 
