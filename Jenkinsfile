@@ -6,7 +6,7 @@ pipeline {
 
   environment {
     AWS_REGION = 'us-east-1'
-    STACK_NAME = 'my-ec2-stack'
+    STACK_NAME = 'ec2-dev'
     TEMPLATE_FILE = 'ec2-instances/templates/dev-template.yml'
     PARAMS_FILE = 'ec2-instances/parameters/dev-parameter.yml'
   }
