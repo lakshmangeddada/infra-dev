@@ -39,49 +39,49 @@ pipeline {
     }
 
 
-    // stage('Create or Update Stack') {
-    //   steps {
-    //     script {
-    //       // Check if stack exists
-    //       def stackExists = sh(
-    //         script: "aws cloudformation describe-stacks --stack-name ${STACK_NAME}",
-    //         returnStatus: true
-    //       ) == 0
+    stage('Create or Update Stack') {
+      steps {
+        script {
+          // Check if stack exists
+          def stackExists = sh(
+            script: "aws cloudformation describe-stacks --stack-name ${STACK_NAME}",
+            returnStatus: true
+          ) == 0
 
-    //       def deployCommand = """
-    //         aws cloudformation ${stackExists ? 'update-stack' : 'create-stack'} \
-    //           --stack-name ${STACK_NAME} \
-    //           --template-body file://${TEMPLATE_FILE} \
-    //           --parameters file://${PARAMS_FILE} \
-    //           --capabilities CAPABILITY_NAMED_IAM \
-    //           --region ${AWS_REGION}
-    //       """
+          def deployCommand = """
+            aws cloudformation ${stackExists ? 'update-stack' : 'create-stack'} \
+              --stack-name ${STACK_NAME} \
+              --template-body file://${TEMPLATE_FILE} \
+              --parameters file://${PARAMS_FILE} \
+              --capabilities CAPABILITY_NAMED_IAM \
+              --region ${AWS_REGION}
+          """
 
-    //       sh deployCommand
-    //     }
-    //   }
-    // }
+          sh deployCommand
+        }
+      }
+    }
 
-    // stage('Wait for Stack Completion') {
-    //   steps {
-    //     script {
-    //       sh """
-    //         aws cloudformation wait stack-${stackExists ? 'update' : 'create'}-complete \
-    //           --stack-name ${STACK_NAME} \
-    //           --region ${AWS_REGION}
-    //       """
-    //     }
-    //   }
-    // }
+    stage('Wait for Stack Completion') {
+      steps {
+        script {
+          sh """
+            aws cloudformation wait stack-${stackExists ? 'update' : 'create'}-complete \
+              --stack-name ${STACK_NAME} \
+              --region ${AWS_REGION}
+          """
+        }
+      }
+    }
   }
 
-//   post {
-//     success {
-//       echo "✅ Infrastructure created/updated successfully!"
-//     }
-//     failure {
-//       echo "❌ Something went wrong with CloudFormation deployment."
-//     }
-//   }
+  post {
+    success {
+      echo "✅ Infrastructure created/updated successfully!"
+    }
+    failure {
+      echo "❌ Something went wrong with CloudFormation deployment."
+    }
+  }
 }
 
