@@ -7,6 +7,7 @@ pipeline    {
             steps {
                 script {
                     checkout scm
+                    sh 'ls -la'
                 }
             }
         }
