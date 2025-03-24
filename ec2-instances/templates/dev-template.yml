@@ -14,7 +14,7 @@ Parameters:
     Type: String
     Description: 'Instance type'
     Default: 't2.micro'
-    Allowed Values:
+    AllowedValues:
       - t2.micro
       - t2.small
       - t2.medium
