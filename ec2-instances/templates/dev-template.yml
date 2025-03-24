@@ -52,7 +52,7 @@ Resources:
         Ebs: 
           VolumeType: gp3
           DeleteOnTermination: true
-          VolumeSize: "20"
+          VolumeSize: "30"
       Tags:
         - Key: Name
           Value: 
