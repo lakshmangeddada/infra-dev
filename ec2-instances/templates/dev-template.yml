@@ -6,7 +6,7 @@ Parameters:
     Type: String
     Description: 'Environment'
     Default: 'dev'
-    Allowed Values:
+    AllowedValues:
       - dev
       - prod
 
