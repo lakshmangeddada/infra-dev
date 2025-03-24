@@ -2,12 +2,15 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'EC2 instance with winrm and chocolatey installed'
 Parameters:
-  env:
+  Env:
     Type: String
     Description: 'Environment'
     Default: 'dev'
+    Allowed Values:
+      - dev
+      - prod
 
-  InstanceType:
+  EC2Type:
     Type: String
     Description: 'Instance type'
     Default: 't2.micro'
@@ -23,36 +26,37 @@ Parameters:
     Type: String
     Description: 'Security group id for all traffic'
 
-  Image:
+  ImageId:
     Type: String
     Description: 'Image id'
-  
-  Count:
-    Type: Number
-    Description: 'Minimum number of instances'
 
-  Subnet:
+  SubnetID:
     Type: String
     Description: 'Subnet id'
   
-
 Resources:
-   myInstances:
-     Type: 'AWS::EC2::Instance'
-     Properties: 
-        ImageId: !Ref Image
-        InstanceType: !Ref InstanceType
-        KeyName: windows_key
-        SecurityGroupIDs:
-          - !Ref SecurityGroup
-        SubnetId: !Ref Subnet 
-        MinCount: !Ref Count
-        BlockDeviceMappings:
-          - DeviceName: /dev/sda1
-            Ebs:
-              VolumeSize: 30
-              DeleteOnTermination: true
-              VolumeType: gp2
-
-
-
+  MyEC2Instance: 
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: 
+        Ref: ImageId
+      KeyName: windows_key
+      InstanceType: 
+        Ref: EC2Type
+      SecurityGroupIds: 
+        - Ref: SecurityGroup
+      SubnetId: 
+        Ref: SubnetID
+      BlockDeviceMappings: 
+      - DeviceName: /dev/sda1
+        Ebs: 
+          VolumeType: gp3
+          DeleteOnTermination: true
+          VolumeSize: "20"
+      Tags:
+        - Key: Name
+          Value: 
+            Ref: Name
+        - Key: env
+          Value: 
+            Ref: Env

@@ -9,13 +9,10 @@
 #Instance tag is Name: managed nodes
 #Instance tag is env: dev
 
-env: dev
-instance_type: t2.micro
-instance_name: managed nodes
-instance_keypair: windows_key.pem
-instance_security_group: launch-wizard-2
-instance_subnet: subnet-0b7baf6955e26c759
-instance_image: ami-05f08ad7b78afd8cd
-instance_count: 2
-instance_tag_name: managed nodes
+Env: dev
+EC2Type: t2.micro
+Name: managed-node
+SecurityGroup: launch-wizard-2
+ImageId: ami-05f08ad7b78afd8cd
+SubnetID: subnet-0b7baf6955e26c759
 
