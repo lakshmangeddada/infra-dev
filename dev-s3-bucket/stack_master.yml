@@ -1,0 +1,8 @@
+stack_defaults:
+  tags:
+    env: dev
+
+stacks:
+  us-east-1:
+    dev-s3-test-parameter:
+    template: s3-template.yml

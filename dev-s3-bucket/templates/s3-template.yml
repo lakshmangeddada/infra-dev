@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'S3 bucket with public access'
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      bucketname: !Ref bucketname
+      AccessControl: PublicRead
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+        tags:
+          - Key: Name
+            Value: !Ref bucketname
+          - Key: env
+            Value: !Ref env
+Outputs:
+  bucketname:
+    Value: !Ref S3Bucket
+    Description: Name of the S3 bucket

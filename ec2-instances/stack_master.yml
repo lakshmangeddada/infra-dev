@@ -1,0 +1,9 @@
+stack_defaults:
+  Tags:
+    Env: dev
+
+stacks:
+  us-east-1:
+    ec2-dev:
+      template_path: templates/dev-template.yml
+      parameters: parameters/dev-parameter.yml
