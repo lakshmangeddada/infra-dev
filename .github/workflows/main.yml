@@ -32,3 +32,4 @@ jobs:
             --template-file ec2-instances/templates/dev-template.yml \
             --stack-name ec2-dev-stack \
             --parameter-overrides file://ec2-instances/parameters/dev-parameter.yml \
+            --region us-east-1 \
